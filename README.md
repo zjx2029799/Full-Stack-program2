@@ -1,2 +1,2 @@
 # Full-Stack-program2
-The URL shortener with NodeJS and AngularJs
+The program use SSH(SpringMVC, Spring, Hibernate) framework and JSP with bootstrap. And this program is a kind of oneline resource sharing system.
