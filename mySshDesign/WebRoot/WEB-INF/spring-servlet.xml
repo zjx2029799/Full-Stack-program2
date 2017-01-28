@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- 扫描controller -->
+	<context:component-scan base-package="com.zjx" /> 
+	<!-- 文件上传支持 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		 <property name="defaultEncoding" value="utf-8"></property>   
+	</bean>  
+	<!-- 视图渲染 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+       <!--  设置视图页面的前缀及后缀名 -->
+        <property name="prefix" value="/jsp/"/>  
+        <property name="suffix" value=".jsp"/>  
+    </bean>  
+    <!-- json支持及转码 -->
+    <bean id="mappingJackson2HttpMessageConverter"  
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>text/html;charset=UTF-8</value>  
+                <value>text/json;charset=UTF-8</value>  
+                <value>application/json;charset=UTF-8</value>  
+            </list>  
+        </property>  
+    </bean>  
+   <!-- 静态资源 ，防止本框架将-->
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/font-awesome/" mapping="/font-awesome/**" />
+    <mvc:resources location="/images/" mapping="/images/**" />
+     <mvc:resources location="/img/" mapping="/img/**" />
+    <mvc:resources location="/js/" mapping="/js/**" />
+    
+    <mvc:resources location="/AD/css/" mapping="/AD/css/**" />
+    <mvc:resources location="/AD/font/" mapping="/AD/font/**" />
+    <mvc:resources location="/AD/fonts/" mapping="/AD/fonts/**" />
+    <mvc:resources location="/AD/img/" mapping="/AD/img/**" />
+    <mvc:resources location="/AD/nuget/" mapping="/AD/nuget/**" />
+    <mvc:resources location="/AD/js/" mapping="/AD/js/**" />
+    
+    
+    
+<!-- <mvc:interceptors>  拦截器
+	  <mvc:interceptor>
+	   <mvc:mapping path="/**"/>
+   		<mvc:exclude-mapping path="/img/**"/>
+	   <bean class="com.neusoft.interceptor.InterceptorDemo1"></bean>
+	  </mvc:interceptor>
+	</mvc:interceptors>
+	
+	静态资源的释放，写了这个在拦截器里就可以不加入exclude了（试试）
+	<mvc:resources location="/im/" mapping="/img/**" />  -->
+	<!-- <mvc:default-servlet-handler/> -->
+<!-- 	<mvc:resources location="/im/" mapping="/img/**" /> -->
+</beans>
